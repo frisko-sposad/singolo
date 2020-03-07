@@ -248,6 +248,9 @@ body {
   font-size: 3rem;  
   font-weight: 900;
   color: #666d89;  
+  overflow: hidden; 
+  text-overflow: ellipsis;   
+  white-space: nowrap; 
 }
 
 .description-h3_overflow {
