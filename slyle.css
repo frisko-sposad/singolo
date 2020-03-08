@@ -156,6 +156,7 @@ body {
 
 .slider__right-arrow { 
   padding-top: 281px;
+  z-index: 5;
 }
 
 .slider__left-arrow img:hover, 
