@@ -7,42 +7,60 @@
   <link rel="stylesheet" href="slyle.css">
 </head>
 <body>
+
+	
+
 	<header class="header">
 		<div class="wrapper header__wrapper">				
 			<h1 class="h1"><a href="#">singolo<span class="star">*</span></a></h1>			
 			<nav class="header-nav">
-				<ul class="header-nav__list">
-					<li class="header-nav__item"><a class="activelink" " href="#">HOME</a></li>					
-					<li class="header-nav__item"><a class="link" href="#">SERVICES</a></li>					
-					<li class="header-nav__item"><a class="link" href="#">PORTFOLIO</a></li>			
-					<li class="header-nav__item"><a class="link" href="#index.html">ABOUT</a></li>
-					<li class="header-nav__item"><a class="link" href="#">CONTACT</a></li>
+				<ul id="menu" class="header-nav__list">
+					<li class="header-nav__item"><a href="#">HOME</a></li>					
+					<li class="header-nav__item"><a href="#our-services">SERVICES</a></li>					
+					<li class="header-nav__item"><a href="#potfolio">PORTFOLIO</a></li>			
+					<li class="header-nav__item"><a href="#about">ABOUT</a></li>
+					<li class="header-nav__item"><a href="#contact">CONTACT</a></li>
 				</ul>
 			</nav>
 		</div>
 	</header>   
 	
-	<div class="slider">
+	<div id="slider1" class="slider">
 		<div class="wrapper slider__wrapper">
 			<div class="slider__left-arrow">
-				<img src="assets/img/lr.png"  alt="">
+				<img id="left-arrow1" src="assets/img/lr.png"  alt="">
 			</div>			
-      <div class="slider__mobil1">
-        <div class="slider__phone-content1"></div>
+      <div id="phone1" class="slider__mobil1">
+        <div id="phone-content1" class="slider__phone-content1"></div>
         <img class="slider__phone1" src="assets/img/iphone.png" alt="mobil1">
         <img class="slider__phone1-shadow" src="assets/img/shadow.png" alt="mobil1">						      
       </div>      
-      <div class="slider__mobil2">
-        <div class="slider__phone-content2"></div>
+      <div id="phone2" class="slider__mobil2">
+        <div id="phone-content2" class="slider__phone-content2"></div>
         <img class="slider__phone2" src="assets/img/iphone.png" alt="mobil2">
         <img class="slider__phone2-shadow" src="assets/img/shadow.png" alt="mobil1">        
       </div>			
 			<div class="slider__right-arrow">
-				<img src="assets/img/lr2.png" alt="">
+				<img id="right-arrow1" src="assets/img/lr2.png" alt="">
 			</div>		
 		</div>
-	</div>	
+	</div>
 	
+	<div id="slider2" class="slider2 list-slider">
+		<div class="wrapper slider__wrapper">
+			<div class="slider__left-arrow">
+				<img id="left-arrow2" src="assets/img/lr.png"  alt="">
+			</div>			
+      
+			<div class="slider__right-arrow">
+				<img id="right-arrow2" src="assets/img/lr2.png" alt="">
+			</div>		
+		</div>
+	</div>  
+
+
+
+	<div id="our-services" class="menu-anchor"></div>
 	<div class="description description-our-service">
 		<div class="wrapper description__wrapper">
 			<h2 class="description__text">Our Services</h2>
@@ -116,6 +134,8 @@
 		</div>	
 	</div>
 	
+	<div id="potfolio" class="menu-anchor"></div>
+
 	<div class="description description-portfolio">
 		<div class="wrapper description__wrapper">
 			<h2 class="description__text">Portfolio</h2>
@@ -125,15 +145,17 @@
 
 	<div class="portfolio-menu">
 		<div class="wrapper portfolio-button__wrapper">
-			<button class="portfolio-button">All</button>
-			<button class="portfolio-button">Web Design</button>
-			<button class="portfolio-button">Graphic Design</button>
-			<button class="portfolio-button">Artwork</button>
+			<ul id="portfolio-menu">
+				<li class="portfolio-button">All</li>
+				<li class="portfolio-button">Web Design</li>
+				<li class="portfolio-button">Graphic Design</li>
+				<li class="portfolio-button">Artwork</li>
+			</ul>
 		</div>
 	</div>
 	
 	<div class="gallery">
-		<div class="wrapper gallery__wrapper">
+		<div id="gallery" class="wrapper gallery__wrapper">
 			<div class="gallery-img gallery-img1"></div>
 			<div class="gallery-img gallery-img2"></div>
 			<div class="gallery-img gallery-img3"></div>
@@ -153,8 +175,10 @@
 		</div>
 	</div>
 
+	<div id="about" class="menu-anchor"></div>
+
 	<div class="description description-about-us">
-		<div class="wrapper description__wrapper">
+		<div class="wrapper wrapper__description-about-us">
 			<h2 class="description__text">About Us</h2>
 			<h3 class="h3 description-h3">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</h3>
 		</div>
@@ -210,12 +234,14 @@
 		</div>
 	</div>
 
-	<div class="description description-get-a-qoute">
+	<div id="contact" class="description description-get-a-qoute">
 		<div class="wrapper wrapper__get-a-qoute">
 			<h2 class="description__text-contact">Get a Quote</h2>
 			<h3 class="h3 contact_h3">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</h3>
 		</div>
 	</div>				
+
+	<div class="menu-anchor"></div>
 
 	<div class="contact">
 				<div class="wrapper wrapper-container">
@@ -223,12 +249,12 @@
 						<form class="form" action="">
 							<div class="form__text"><input class="text_vaid" type="text" placeholder="Name (Required)" required maxlength="50" pattern="^[a-zA-Z]+$"></div> 
 							<div class="form__text"><input class="text_vaid" type="email" placeholder="Email (Required)" required maxlength="50"></div> 
-							<div class="form__text"><input type="text" placeholder="Subject" required maxlength="50"></div> 
+							<div class="form__text"><input id="subject" type="text" placeholder="Subject"  maxlength="50"></div> 
 
 							<div class="form__textarea">
-								<textarea  name="" id="" cols="30" rows="13" required maxlength="1450">Describe your project in detail&#133;</textarea>
+								<textarea id="describe"  name="" id="" cols="30" rows="13" required maxlength="1450" placeholder="Describe your project in detail&#133;"></textarea>
 							</div>
-							<button class="form__button">Submit</button>							
+							<button id="btn" class="form__button">Submit</button>							
 						</form>
 					</div>					
 					
@@ -255,14 +281,29 @@
 				           	<img src="assets/img/mini-ico-mail.png" alt="">
 				          </div>
 				          <a href="mailto: info@singolo.com">info@singolo.com</a>
-				        </div> 
-				      
+				        </div> 				      
 				      </div>   
 		        </div>
 					</div>
 				</div>	
 		</div>			
 	</div> 	
+
+
+	<div id="message-block" class="hidden">
+			<div class="wrapper wrapper__message-block">
+				<div id="message">
+					<p class="message__text">Письмо отправлено</p>
+					<br>
+					<p class="message__text"><span id="result"></span></p>
+					<br>
+					<p class="message__text"><span id="result2"></span></p>
+					<br>
+					<button id="close-bth" class="form__button">OK</button>
+				</div>
+			</div>
+		</div>
+	
 
 <footer class="footer">
 	<div class="wrapper wrapper_footer">
@@ -279,7 +320,7 @@
 </footer>
 
 
-
+<script src="script.js"></script>
 
 
 	
