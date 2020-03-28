@@ -7,47 +7,20 @@ const CONTENT1 = document.getElementById("phone-content1");
 const CONTENT2 = document.getElementById("phone-content2");
 const portfolio_menu = document.getElementById('portfolio-menu');
 const gallery = document.getElementById('gallery');
-const slider1 = document.getElementById('slider1');
-const slider2 = document.getElementById('slider2');
-const leftArrow1 = document.getElementById('left-arrow1');
-const rightArrow1 = document.getElementById('right-arrow1');
-const leftArrow2 = document.getElementById('left-arrow2');
-const rightArrow2 = document.getElementById('right-arrow2');
 
 // Слайдер
-leftArrow1.addEventListener('click', (event) => {
-	sliderList(slider1,slider2);
-} )
-
-rightArrow1.addEventListener('click', (event) => {
-	sliderList(slider1,slider2);
-} )
-
-leftArrow2.addEventListener('click', (event) => {
-	sliderList(slider2,slider1);
-} )
-
-rightArrow2.addEventListener('click', (event) => {
-	sliderList(slider2,slider1);
-} )
-
-function sliderList(s1,s2) {
-	s1.classList.add('list-slider');
-	s2.classList.remove('list-slider');
-}
-// Слайдер
-
-// главное меню
-MENU.addEventListener('click', (event) => {
-MENU.querySelectorAll('a').forEach(el => el.classList.remove('active'));
-event.target.classList.add('active');
-})
-// главное меню
+let sliderItems = document.querySelectorAll('.slider__item');
+let currentItem = 0;
+let isEnable = true;
 
 // Окно отправки сообщения
 BUTTON.addEventListener('click', () => {
 	const subject = document.getElementById('subject').value.toString();
 	const describe = document.getElementById('describe').value.toString();
+	
+
+	if (!document.getElementById("name").checkValidity() || !document.getElementById("email").checkValidity())
+        return;
 
 	if (subject === "") { 
 		document.getElementById('result').innerText = "Без темы";
@@ -59,7 +32,8 @@ BUTTON.addEventListener('click', () => {
 		document.getElementById('result2').innerText = "Без описания";
 	} else {
 		document.getElementById('result2').innerText = "Описание: " + describe;
-	}	
+	}
+	
 
 	document.getElementById('message-block').classList.remove('hidden');
 	})
@@ -67,12 +41,13 @@ BUTTON.addEventListener('click', () => {
 CLOSE_BUTTON.addEventListener('click', () => {
 	document.getElementById('result').innerText = '';
 	document.getElementById('message-block').classList.add('hidden');
+	document.querySelector('.form').reset();
 })	
-// Окно отправки сообщения
+
 
 // Вкл выкл экрана телефонов
 PHONEA.addEventListener('click', () => {
-	if (!event.target.classList.contains('slider__phone1')) { // проверка на попадания в тень телефона
+	if (!event.target.classList.contains('slider__phone1') && !event.target.classList.contains('slider__phone-content1')) { // проверка на попадания в тень телефона
 		return;
 	} else {
 		removePicture(CONTENT1);
@@ -80,7 +55,7 @@ PHONEA.addEventListener('click', () => {
 })
 
 PHONEB.addEventListener('click', () => {
-	if (!event.target.classList.contains('slider__phone2')) { // проверка на попадания в тень телефона
+	if (!event.target.classList.contains('slider__phone2') && !event.target.classList.contains('slider__phone-content2')) { // проверка на попадания в тень телефона
 		return;
 	} else {
 		removePicture(CONTENT2);
@@ -118,9 +93,114 @@ gallery.addEventListener('click', (event) => {
 	}
 	else{
 		event.target.classList.add('img-ative');
-	} 
-	
+	} 	
 		})
 
+// Слайдер
 
+function changeCurrentItem(n) {
+	currentItem = (n + sliderItems.length) % sliderItems.length;
+}
+
+function hideItem (direction) {
+	isEnable = false;
+	sliderItems[currentItem].classList.add(direction);
+	sliderItems[currentItem].addEventListener('animationend', function () {
+		this.classList.remove('slider-active', direction);		
+	});
+}
+
+function showItem (direction) {	
+	sliderItems[currentItem].classList.add('slider-next', direction);
+	sliderItems[currentItem].addEventListener('animationend', function () {
+		this.classList.remove('slider-next', direction);
+		this.classList.add('slider-active');
+		isEnable = true; 		
+	})
+}
+
+function previosItem (n) {
+	hideItem('to-right')
+	changeCurrentItem(n - 1);
+	showItem('from-left');	
+}
+
+function nextItem (n) {
+	hideItem('to-left')
+	changeCurrentItem(n + 1);
+	showItem('from-right');	
+}
+
+document.querySelector('.slider__left-arrow').addEventListener('click', function() {
+	if (isEnable) {
+		previosItem(currentItem);
+	}
+});
+
+document.querySelector('.slider__right-arrow').addEventListener('click', function() {
+	if (isEnable) {
+		nextItem(currentItem);
+	}
+});
+
+// Скролл меню
+document.addEventListener('scroll', onScroll);
+
+function onScroll(event) {
+	const curPos = window.scrollY;	
+	const divs = document.querySelectorAll('.menu-anchor');
+	const links = document.querySelectorAll('#menu a');
+	const linksMobile = document.querySelectorAll('#menu-mobil a');
+
+	divs.forEach((el) => {
+		console.log(el + "" + curPos);
 		
+		if (el.offsetTop <= curPos && (el.offsetTop + el.offsetHeight) > curPos ) {
+			links.forEach((a) => {
+				a.classList.remove('active-link')
+				if (el.getAttribute('id') === a.getAttribute('href').substring(1)) {
+					a.classList.add('active-link')
+				}			
+			})
+		} 
+
+		if (el.offsetTop <= curPos && (el.offsetTop + el.offsetHeight) > curPos ) {
+			linksMobile.forEach((a) => {
+				a.classList.remove('active-link')
+				if (el.getAttribute('id') === a.getAttribute('href').substring(1)) {
+					a.classList.add('active-link')
+				}			
+			})
+		} 
+
+
+
+
+	});
+}
+
+// Gamburger menu
+const Gamburger = document.getElementById('gamburger');
+const mobilMenu = document.getElementById('menu-mobil');
+
+
+Gamburger.addEventListener('click', () => {
+	
+	if (Gamburger.classList.contains('gamburger-rotate')) {
+		Gamburger.classList.remove('gamburger-rotate');
+		mobilMenu.classList.remove('mobil-nav-on');
+	} else {
+		Gamburger.classList.add('gamburger-rotate');
+		mobilMenu.classList.add('mobil-nav-on');
+	}	
+})	
+
+mobilMenu.addEventListener('click', () => {
+	if (mobilMenu.classList.contains('mobil-nav-on')) {
+		Gamburger.classList.remove('gamburger-rotate');
+		mobilMenu.classList.remove('mobil-nav-on');
+	} 
+	
+})
+
+mobil-nav__item
