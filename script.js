@@ -203,4 +203,4 @@ mobilMenu.addEventListener('click', () => {
 	
 })
 
-mobil-nav__item
+
